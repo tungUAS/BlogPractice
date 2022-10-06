@@ -25,6 +25,8 @@ db.sequelize = sequelize;
 
 db.user = require('./user.model')(sequelize,Sequelize);
 db.role = require('./role.model')(sequelize,Sequelize);
+db.post = require('./post.model')(sequelize,Sequelize);
+db.category = require('./category.model')(sequelize,Sequelize);
 
 db.user.belongsToMany(db.role,{
     through:"user_roles",
@@ -36,7 +38,22 @@ db.role.belongsToMany(db.user,{
     through:"user_roles",
     foreignKey:"role_id",
     otherKey:"user_id"
-})
+});
+
+db.post.belongsToMany(db.category,{
+    through:"post_category",
+    foreignKey:"post_id",
+    otherKey:"category_id"
+});
+
+db.category.belongsToMany(db.post,{
+    through:"post_category",
+    foreignKey:"category_id",
+    otherKey:"post_id"
+});
+
+db.user.hasMany(db.post);
+db.post.belongsTo(db.user);
 
 db.ROLES = ["user","admin"]
 
