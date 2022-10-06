@@ -28,3 +28,19 @@ exports.addBlogPost = async (req,res) => {
         console.log(error);
     }
 }
+
+exports.getAllBlogPosts = async (req,res) => {
+    try{
+        const posts = await Post.findAll({
+            where:{
+                userUserId:{
+                    [Op.eq]:req.user_id
+                }
+            }
+        })
+
+        return res.json(posts)
+    }catch(error){
+        console.log(error);
+    }
+}
