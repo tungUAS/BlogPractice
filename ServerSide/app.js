@@ -3,8 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 
 var authRouter = require('./routes/auth.routes');
+var userRouter = require('./routes/user.routes');
 
 var app = express();
 
@@ -13,8 +15,6 @@ const db = require('./models');
 const Role = db.role;
 
 db.sequelize.sync();
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,7 +26,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const corsOptions = {
+  origin: ["http://localhost:3000"],
+  exposedHeaders: ["Authorization"],
+};
+
+app.use(cors(corsOptions));
+app.use(function(req, res, next) {
+  res.header(
+    "Access-Control-Allow-Headers",
+    "x-access-token, Origin, Content-Type, Accept"
+  );
+  next();
+});
+
 app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

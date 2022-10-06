@@ -2,7 +2,7 @@ const { json } = require('sequelize');
 const db = require('../models')
 const User = db.user;
 
-exports.checkDuplicateData = async (req,res,next) => {
+checkDuplicateData = async (req,res,next) => {
     const isValidName = await User.findOne({
         where:{
             user_name:req.body.user_name
@@ -22,3 +22,9 @@ exports.checkDuplicateData = async (req,res,next) => {
 
     next();
 }
+
+const verifySignUp = {
+    checkDuplicateData:checkDuplicateData
+}
+
+module.exports = verifySignUp;
