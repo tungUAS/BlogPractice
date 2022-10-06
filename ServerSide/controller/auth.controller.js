@@ -1,6 +1,7 @@
 var jwt = require('jsonwebtoken');
 const db = require('../models')
 const User = db.user;
+const Post = db.post;
 const config = require('../config/token.config');
 const bcrypt = require('bcrypt');
 
@@ -50,4 +51,5 @@ exports.register = async (req,res) => {
         console.log(error);
     }
 }
+
 
