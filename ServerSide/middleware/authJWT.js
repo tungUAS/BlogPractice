@@ -25,6 +25,7 @@ verifyToken = (req,res,next) => {
 }
 
 isUser = async (req,res,next) => {
+    console.log(req.user_id);
     try{
         // req.user_id comes from previous middleware verifyToken
         const userFound = await User.findByPk(req.user_id);

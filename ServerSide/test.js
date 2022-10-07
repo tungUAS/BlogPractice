@@ -1,17 +1,17 @@
-/* const db = require('../ServerSide/models')
+const db = require('../ServerSide/models')
 const Category = db.category;
 const Post = db.post;
 const Op = db.Sequelize.Op;
-let userId = 2;
+let userId = 1;
 const start = async ()=>{
  
-    for(let i=1;i<100;i=i+3){
+    for(let i=1;i<100;i=i+7){
         if(i % 25 == 0){
             userId=userId+1;
         }
         const data = {
             "user_id":userId,
-            "post_title":"Blog Post Title Number"+i.toString(),
+            "post_title":"Blog Post Title Number"+i.toString()+"abc ..... xyz",
             "post_content":"Forth Blog Post Love Family Content Number"+i.toString(),
             "post_categories":["love","family"]
         }
@@ -22,7 +22,7 @@ const start = async ()=>{
                 post_content:data.post_content
             });
 
-            await newPost.setCategories([1,2,3]);
+            await newPost.setCategories([3]);
             console.log("Done"+i)
 
         }catch(error){
@@ -31,7 +31,9 @@ const start = async ()=>{
     } 
 }
 
-start(); */
+
+
+start();
 
 /* addBlogPost = async (req,res) => {
     try{
