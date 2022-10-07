@@ -1,4 +1,3 @@
-const { INTEGER } = require('sequelize');
 const db = require('../models')
 const Category = db.category;
 const Post = db.post;
@@ -52,6 +51,7 @@ exports.getAllBlogPostsByUserID = async (req,res) => {
                 },
                 order:['post_id','ASC']
             }],
+
             offset:parseInt(passedItems),
             limit:parseInt(limit),
             subQuery:false
@@ -87,6 +87,7 @@ exports.getAllBlogPostByUserIdAndCategory = async (req,res) => {
                 },
                 order:['post_id','ASC']
             }],
+
             offset:parseInt(passedItems),
             limit:parseInt(limit),
             subQuery:false
@@ -95,5 +96,22 @@ exports.getAllBlogPostByUserIdAndCategory = async (req,res) => {
         return res.json(posts)
     }catch(error){
         return res.json(error);
+    }
+}
+
+exports.updatePost = async (req,res) => {
+    try{
+        await Post.update({
+            post_title:req.body.post_title,
+            post_content:req.body.post_content
+        },{
+            where:{
+                post_id:req.body.post_id
+            }
+        })
+
+        return res.status(200).json("Updated successfully");
+    }catch(error){
+        return res.status(500).json("error updating");
     }
 }

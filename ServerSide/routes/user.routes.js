@@ -17,4 +17,6 @@ router.get('/getAllPosts',authJWT.verifyToken,authJWT.isUser,userController.getA
 
 router.get('/getPostsByCat',authJWT.verifyToken,authJWT.isUser,userController.getAllBlogPostByUserIdAndCategory);
 
+router.put('/updatePost',authJWT.verifyToken,authJWT.isUser,userController.updatePost);
+
 module.exports = router;
