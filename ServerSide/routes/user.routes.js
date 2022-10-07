@@ -13,6 +13,8 @@ router.get('/get',authJWT.verifyToken,authJWT.isUser,(req,res)=>{
 
 router.post('/addPost',authJWT.verifyToken,authJWT.isUser,userController.addBlogPost);
 
-router.get('/getAllPosts',authJWT.verifyToken,authJWT.isUser,userController.getAllBlogPostsByUserID)
+router.get('/getAllPosts',authJWT.verifyToken,authJWT.isUser,userController.getAllBlogPostsByUserID);
+
+router.get('/getPostsByCat',authJWT.verifyToken,authJWT.isUser,userController.getAllBlogPostByUserIdAndCategory);
 
 module.exports = router;
