@@ -1,1 +1,17 @@
-<p>Log-in page</p>
+<div class="container"> 
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form" >
+  
+      <mat-form-field floatLabel="never" class="form-element">
+        <input type="text" matInput placeholder="Username" formControlName="user_name" autocomplete="off">
+      </mat-form-field>
+  
+      <mat-form-field floatLabel="never" class="form-element">
+        <input type="password" matInput placeholder="Password" formControlName="user_password" autocomplete="off">
+      </mat-form-field>
+  
+      <div class="form-element">
+        <button mat-raised-button color="primary" type="submit" class="button" >Log In</button>
+      </div>
+  
+    </form>
+  </div>

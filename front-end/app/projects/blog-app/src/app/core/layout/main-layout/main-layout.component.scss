@@ -5,6 +5,8 @@
 button {
   margin: 0 10px;
 
+  border: 1px white solid;
+
   &.active {
     filter: brightness(120%);
   }

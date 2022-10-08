@@ -8,7 +8,7 @@ const routes: Routes = [
     redirectTo: 'home',
   },
   {
-    path: 'log-in',
+    path: 'login',
     loadChildren: () =>
       import('./features/log-in/log-in.module').then((m) => m.LogInModule),
   },
